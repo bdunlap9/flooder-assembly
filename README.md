@@ -1,4 +1,4 @@
 # flooder-assembly
 UDP flooder in assembly
 
-Linux x85 Arch
+Linux x86 Arch
