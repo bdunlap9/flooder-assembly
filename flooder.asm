@@ -11,7 +11,7 @@ section .data   ; Constant Data
         lenGetTimeMsg equ $-getTimeMsg                          ; Get Length of Input
 
 section .bss
-        internet_protocol resb 25
+        internet_protocol resb 16
         port resb 6
         time resb 25
 
@@ -30,7 +30,7 @@ _start:                                          ; User Prompt
         mov eax, 3
         mov ebx, 1
         mov ecx, internet_protocol
-        mov edx, 5
+        mov edx, 16                              ; Stores length of string
         int 80h
 
         ; Get Port Input
@@ -44,7 +44,7 @@ _start:                                          ; User Prompt
         mov eax, 3
         mov ebx, 0
         mov ecx, port
-        mov edx, 5
+        mov edx, 5                               ; Stores length of string
         int 80h
 
         ; Get Time Input
@@ -58,7 +58,7 @@ _start:                                          ; User Prompt
         mov eax, 3
         mov ebx, 2
         mov ecx, time
-        mov edx, 5
+        mov edx, 25                              ; Stores length of string
         int 80h
 
         ; Exit(0)
