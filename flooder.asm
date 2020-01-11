@@ -42,7 +42,7 @@ _start:                                          ; User Prompt
 
         ; Read and Store user input for Port
         mov eax, 3
-        mov ebx, 2
+        mov ebx, 0
         mov ecx, port
         mov edx, 5
         int 80h
