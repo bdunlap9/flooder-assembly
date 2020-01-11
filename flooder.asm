@@ -11,9 +11,9 @@ section .data   ; Constant Data
         lenGetTimeMsg equ $-getTimeMsg                          ; Get Length of Input
 
 section .bss
-        internet_protocol resb 100
-        port resb 100
-        time resb 100
+        internet_protocol resb 16
+        port resb 6
+        time resb 25
 
 section .text
         global _start
