@@ -28,7 +28,7 @@ _start:                                          ; User Prompt
 
         ; Read and Store user input for internet_protocol
         mov eax, 3
-        mov ebx, 0
+        mov ebx, 1
         mov ecx, internet_protocol
         mov edx, 5
         int 80h
