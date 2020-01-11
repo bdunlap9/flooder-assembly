@@ -11,7 +11,7 @@ section .data   ; Constant Data
         lenGetTimeMsg equ $-getTimeMsg                          ; Get Length of Input
 
 section .bss
-        ip resb 100
+        internet_protocol resb 100
         port resb 100
         time resb 100
 
@@ -26,10 +26,10 @@ _start:                                          ; User Prompt
         mov edx, lenGetIPMsg
         int 80h                                  ; Call Kernal
 
-        ; Read and Store user input for IP
+        ; Read and Store user input for internet_protocol
         mov eax, 3
         mov ebx, 2
-        mov ecx, ip
+        mov ecx, internet_protocol
         mov edx, 5
         int 80h
 
