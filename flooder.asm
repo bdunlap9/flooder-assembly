@@ -19,6 +19,7 @@ section .text
         global _start
 
 _start:                                          ; User Prompt
+        ; Get IP input
         mov eax, 4
         mov ebx, 1
         mov ecx, getIPMsg
@@ -32,6 +33,7 @@ _start:                                          ; User Prompt
         mov edx, 5
         int 80h
 
+        ; Get Port Input
         mov eax, 4
         mov ebx, 1
         mov ecx, getPortMsg
@@ -45,6 +47,7 @@ _start:                                          ; User Prompt
         mov edx, 5
         int 80h
 
+        ; Get Time Input
         mov eax, 4
         mov ebx, 1                               ; Standard Output (print to terminal)
         mov ecx, getTimeMsg
