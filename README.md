@@ -1,2 +1,2 @@
 # flooder-assembly
-TCP/UDP flooder in assembly
+UDP flooder in assembly
