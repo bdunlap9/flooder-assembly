@@ -1,4 +1,4 @@
-; Weeke's -> TCP/UDP Flooder (Assembly)
+; Weeke's -> UDP Flooder (Assembly)
 
 section .data   ; Constant Data
         getIPMsg db 'Enter IP: '                                ; Get IP Input
@@ -60,6 +60,9 @@ _start:                                          ; User Prompt
         mov ecx, time
         mov edx, 25                              ; Stores length of string
         int 80h
+
+        ; Craft UDP Packet
+
 
         ; Exit(0)
         mov eax, 1                               ; Call Sys_Exit
