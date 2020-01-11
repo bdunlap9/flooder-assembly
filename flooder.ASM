@@ -10,8 +10,8 @@ section .data   ; Constant Data
         getTimeMsg db 'Enter Time: '                            ; Get Time Input
         lenGetTimeMsg equ $-getTimeMsg                          ; Get Length of Input
 
-        getTypeMsg db 'Enter Flood Type (UDP or TCP): '         ; Get Type Input
-        lenGetTypeMsg equ $-getTypeMsg                          ; Get Length of Input
+       ; getTypeMsg db 'Enter Flood Type (UDP or TCP): '         ; Get Type Input
+       ; lenGetTypeMsg equ $-getTypeMsg                          ; Get Length of Input
 
 section .bss
         num resb 100
@@ -38,11 +38,11 @@ _start:                                          ; User Prompt
         mov edx, lenGetTimeMsg
         int 80h                                  ; Call Kernal
 
-        mov eax, 4
-        mov ebx, 1                               ; standard output (print to terminal)
-        mov ecx, getTypeMsg
-        mov edx, lenGetTpeMsg                    ; Call Kernal
-        int 80h
+       ; mov eax, 4
+       ; mov ebx, 1                               ; standard output (print to terminal)
+       ; mov ecx, getTypeMsg
+       ; mov edx, lenGetTpeMsg                    ; Call Kernal
+       ; int 80h
 
         ; Read and Store user input
         mov eax, 3
