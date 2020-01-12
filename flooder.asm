@@ -19,7 +19,7 @@ section .data   ; Constant Data
 section .bss
         internet_protocol resb 16
         port resb 6
-        amount_time resb 25
+        time resb 25
 
 section .text
         global _start
@@ -78,7 +78,7 @@ _start:                                                                         
 
 
         ; Loop for var time
-        mov cl, amount_time
+        mov cl, time
         l1:                                                                   ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, lenGetTest                                                  ; Message Length
