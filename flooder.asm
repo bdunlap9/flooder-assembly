@@ -78,16 +78,15 @@ _start:                                                                         
 
 
         ; Loop for var time
-        mov cl, time
-        L1:
+        mov ecx, time
+        l1:                                                                     ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, len                                                         ; Message Length
            mov ecx, test                                                        ; Message to write
            mov ebx, 1                                                           ; File Descriptor (stdout)
            mov eax, 4                                                           ; Call Sys_Write
            int 80h                                                              ; Call Kernel
-        dec cl
-        jnz L1
+        loop l1                                                                 ; Start Loop
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
