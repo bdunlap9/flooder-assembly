@@ -16,6 +16,9 @@ section .data                                                                   
         getTest db 'test message for loop'
         lenGetTest equ $-getTest
 
+        getCompleted db 'UDP flood completed!'
+        lenGetCompleted equ $-getCompleted
+
 section .bss                                                                    ; Variable Data
         internet_protocol resb 16
         port resb 6
@@ -102,6 +105,13 @@ _start:                                                                         
 
                 jne start_loop                                                  ; If ECX != time jump back and loop
                                                                                 ; When ECX = time, execution contrinues pass the jump
+
+        ; Display Completed UDP Flood
+        mov edx, lenGetCompleted                                                ; Message Length
+        mov ecx, getCompleted                                                   ; Message to write
+        mov ebx, 1                                                              ; File Descriptor (stdout)
+        mov eax, 4                                                              ; Call Sys_Write
+        int 80h                                                                 ; Call Kernel
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
