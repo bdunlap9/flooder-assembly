@@ -1,22 +1,22 @@
 ; Weeke's -> UDP Flooder (Assembly)
 
-section .data                                                                  ; Constant Data
-        getIPMsg db 'Enter IP: '                                               ; Get IP Input
-        lenGetIPMsg equ $-getIPMsg                                             ; Get Length of input
+section .data                                                                   ; Constant Data
+        getIPMsg db 'Enter IP: '                                                ; Get IP Input
+        lenGetIPMsg equ $-getIPMsg                                              ; Get Length of input
 
-        getPortMsg db 'Enter Port: '                                           ; Get Port Input
-        lenGetPortMsg equ $-getPortMsg                                         ; Get Length of input
+        getPortMsg db 'Enter Port: '                                            ; Get Port Input
+        lenGetPortMsg equ $-getPortMsg                                          ; Get Length of input
 
-        getTimeMsg db 'Enter Time: '                                           ; Get Time Input
-        lenGetTimeMsg equ $-getTimeMsg                                         ; Get Length of Input
+        getTimeMsg db 'Enter Time: '                                            ; Get Time Input
+        lenGetTimeMsg equ $-getTimeMsg                                          ; Get Length of Input
 
-        getBanner db "[Weeke's] -> UDP Flooder v1.0", 0xa                      ; String To Be Printed
-        lenGetBanner equ $-getBanner                                           ; Get Length of String
+        getBanner db "[Weeke's] -> UDP Flooder v1.0", 0xa                       ; String To Be Printed
+        lenGetBanner equ $-getBanner                                            ; Get Length of String
 
         getTest db 'test message for loop'
         lenGetTest equ $-getTest
 
-section .bss                                                                   ; Variable Data
+section .bss                                                                    ; Variable Data
         internet_protocol resb 16
         port resb 6
         time resb 25
@@ -79,19 +79,21 @@ _start:                                                                         
 
         ; Loop for var time                                                     ; mov BYTE PTR cl, [time]
         mov ecx, time
-
-        l1:                                                                     ; Body of Loop
-           ; Send Crafted UDP packet till time var ends from loop
-           mov edx, lenGetTest                                                  ; Message Length
-           mov ecx, getTest                                                     ; Message to write
-           mov ebx, 1                                                           ; File Descriptor (stdout)
-           mov eax, 4                                                           ; Call Sys_Write
-           int 80h                                                              ; Call Kernel
-           loop l1
-           mov eax, 1                                                           ; Call Sys_Exit
-           int 80h                                                              ; Call Kernal
-
+                
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
         mov ebx, 0                                                              ; Read from standard input
         int 80h                                                                 ; Call Kernal
+
+time_amount:                                                                    ; Body of Loop
+        ; Send Crafted UDP packet till time var ends from loop
+        mov edx, lenGetTest                                                     ; Message Length
+        mov ecx, getTest                                                        ; Message to write
+        mov ebx, 1                                                              ; File Descriptor (stdout)
+        mov eax, 4                                                              ; Call Sys_Write
+        int 80h                                                                 ; Call Kernel
+        loop l1
+        mov eax, 1                                                              ; Call Sys_Exit
+        int 80h                                                                 ; Call Kernal
+        loop time_amount
+                
