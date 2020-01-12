@@ -78,20 +78,20 @@ _start:                                                                         
 
 
         ; Loop for var time                                                     ; mov BYTE PTR cl, [time]
-        xor ecx, ecx
-        mov eax, 2
-        xor ebx, ebx
+        xor ecx, ecx                                                            ; ECX = 0
+        mov eax, 2                                                              ; EAX = 2
+        xor ebx, ebx                                                            ; EBX = 0
 
         start_loop:
-                cmp eax, ebx
-                jle continue
-                inc ebx
-                jmp start_loop
+                cmp eax, ebx                                                    ; Compare EAX and EBX
+                jle continue                                                    ; If EAX <= EBX jump to the continue label
+                inc ebx                                                         ; else EBX = EBX + 1
+                jmp start_loop                                                  ; JUMP back to the start (Until EBX >= EAX)
 
         continue:
-                add eax, ebx
-                inc ecx
-                cmp ecx, time
+                add eax, ebx                                                    ; EAX = EAX + EBX
+                inc ecx                                                         ; ECX = ECX + 1
+                cmp ecx, time                                                   ; Compare ECX and time (var from getTime)
 
                 ; Send Test Message x amount of time
                 mov edx, lenGetTest                                             ; Message Length
@@ -100,7 +100,8 @@ _start:                                                                         
                 mov eax, 4                                                      ; Call Sys_Write
                 int 80h                                                         ; Call Kernel
 
-                jne start_loop
+                jne start_loop                                                  ; If ECX != time jump back and loop
+                                                                                ; When ECX = time, execution contrinues pass the jump
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
