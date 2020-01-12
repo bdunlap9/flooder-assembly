@@ -92,19 +92,18 @@ _start:                                                                         
                 jmp start_loop                                                  ; JUMP back to the start (Until EBX >= EAX)
 
         continue:
-                add eax, ebx                                                    ; EAX = EAX + EBX
-                inc ecx                                                         ; ECX = ECX + 1
-                cmp ecx, time                                                   ; Compare ECX and time (var from getTime)
-
                 ; Send Test Message x amount of time
                 mov edx, lenGetTest                                             ; Message Length
                 mov ecx, getTest                                                ; Message to write
                 mov ebx, 1                                                      ; File Descriptor (stdout)
                 mov eax, 4                                                      ; Call Sys_Write
                 int 80h                                                         ; Call Kernel
-
+                
+                add eax, ebx                                                    ; EAX = EAX + EBX
+                inc ecx                                                         ; ECX = ECX + 1
+                cmp ecx, time                                                   ; Compare ECX and time (var from getTime)
                 jne start_loop                                                  ; If ECX != time jump back and loop
-                                                                                ; When ECX = time, execution contrinues pass the jump
+                                                                                ; When ECX = time, execution continues pass the jump
 
         ; Display Completed UDP Flood
         mov edx, lenGetCompleted                                                ; Message Length
