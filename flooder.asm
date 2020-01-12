@@ -79,6 +79,7 @@ _start:                                                                         
 
         ; Loop for var time                                                     ; mov BYTE PTR cl, [time]
         mov ecx, time
+
         l1:                                                                     ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, lenGetTest                                                  ; Message Length
@@ -87,6 +88,8 @@ _start:                                                                         
            mov eax, 4                                                           ; Call Sys_Write
            int 80h                                                              ; Call Kernel
            loop l1
+           mov eax, 1                                                           ; Call Sys_Exit
+           int 0x80                                                             ; Call Kernal
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
