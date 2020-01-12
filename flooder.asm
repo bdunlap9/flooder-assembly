@@ -78,7 +78,8 @@ _start:                                                                         
 
 
         ; Loop for var time
-        mov ecx, time
+        ;mov ecx, time
+        mov BYTE PTR cl, [time]
         l1:                                                                   ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, lenGetTest                                                  ; Message Length
