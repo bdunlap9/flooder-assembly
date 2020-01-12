@@ -89,7 +89,7 @@ _start:                                                                         
                 loop time
 
                 ; Exit(0)
-                mov eax, 1                                                      ; Call Sys_Exit
-                mov ebx, 0                                                      ; Read from standard input
-                int 80h                                                         ; Call Kernal
+                ;mov eax, 1                                                      ; Call Sys_Exit
+                ;mov ebx, 0                                                      ; Read from standard input
+                ;int 80h                                                         ; Call Kernal
                 
