@@ -13,6 +13,9 @@ section .data   ; Constant Data
         msg db "[Weeke's] -> UDP Flooder v1.0", 0xa             ; String To Be Printed
         len equ $ - msg                                         ; Get Length of String
 
+        test db 'test message for loop', 0xa
+        len equ $ - test
+
 section .bss
         internet_protocol resb 16
         port resb 6
@@ -73,11 +76,16 @@ _start:                                          ; User Prompt
 
         ; Craft UDP Packet
 
+
         ; Loop for var time
         mov cl, time
         L1:
            ; Send Crafted UDP packet till time var ends from loop
-
+           mov edx, len                             ; Message Length
+           mov ecx, test                             ; Message to write
+           mov ebx, 1                               ; File Descriptor (stdout)
+           mov eax, 4                               ; Call Sys_Write
+           int 80h                                  ; Call Kernel
         dec cl
         jnz L1
 
