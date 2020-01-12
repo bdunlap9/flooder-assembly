@@ -41,7 +41,7 @@ _start:                                          ; User Prompt
         mov ebx, 1
         mov ecx, internet_protocol
         mov edx, 16                              ; Stores length of string
-        int 80h
+        int 80h                                  ; Call Kernal
 
         ; Get Port Input
         mov eax, 4
@@ -55,7 +55,7 @@ _start:                                          ; User Prompt
         mov ebx, 0
         mov ecx, port
         mov edx, 5                               ; Stores length of string
-        int 80h
+        int 80h                                  ; Call Kernal
 
         ; Get Time Input
         mov eax, 4
@@ -69,12 +69,19 @@ _start:                                          ; User Prompt
         mov ebx, 2
         mov ecx, time
         mov edx, 25                              ; Stores length of string
-        int 80h
+        int 80h                                  ; Call Kernal
 
         ; Craft UDP Packet
 
+        ; Loop for var time
+        mov cl, time
+        L1:
+           ; Send Crafted UDP packet till time var ends from loop
+
+        dec cl
+        jnz L1
 
         ; Exit(0)
         mov eax, 1                               ; Call Sys_Exit
         mov ebx, 0                               ; Read from standard input
-        int 80h
+        int 80h                                  ; Call Kernal
