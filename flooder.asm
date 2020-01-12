@@ -85,10 +85,8 @@ _start:                                                                         
            mov ecx, getTest                                                     ; Message to write
            mov ebx, 1                                                           ; File Descriptor (stdout)
            mov eax, 4                                                           ; Call Sys_Write
-           loop l1
            int 80h                                                              ; Call Kernel
-        dec cl
-        jnz l1
+           loop l1
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
