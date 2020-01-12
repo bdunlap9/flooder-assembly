@@ -89,7 +89,7 @@ _start:                                                                         
            int 80h                                                              ; Call Kernel
            loop l1
            mov eax, 1                                                           ; Call Sys_Exit
-           int 0x80                                                             ; Call Kernal
+           int 80h                                                              ; Call Kernal
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
