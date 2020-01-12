@@ -10,6 +10,9 @@ section .data   ; Constant Data
         getTimeMsg db 'Enter Time: '                            ; Get Time Input
         lenGetTimeMsg equ $-getTimeMsg                          ; Get Length of Input
 
+        msg db "[Weeke's] -> UDP Flooder v1.0", 0xa             ; String To Be Printed
+        len equ $ - msg                                         ; Get Length of String
+
 section .bss
         internet_protocol resb 16
         port resb 6
@@ -19,6 +22,13 @@ section .text
         global _start
 
 _start:                                          ; User Prompt
+        ; Display Banner
+        mov edx, len                             ; Message Length
+        mov ecx, msg                             ; Message to write
+        mov ebx, 1                               ; File Descriptor (stdout)
+        mov eax, 4                               ; Call Sys_Write
+        int 80h                                  ; Call Kernel
+
         ; Get IP input
         mov eax, 4
         mov ebx, 1
