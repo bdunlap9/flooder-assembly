@@ -91,9 +91,8 @@ time_amount:                                                                    
         mov ecx, getTest                                                        ; Message to write
         mov ebx, 1                                                              ; File Descriptor (stdout)
         mov eax, 4                                                              ; Call Sys_Write
-        int 80h                                                                 ; Call Kernel
-        loop l1
+        ;int 80h                                                                 ; Call Kernel
+        loop time_amount
         mov eax, 1                                                              ; Call Sys_Exit
         int 80h                                                                 ; Call Kernal
-        loop time_amount
                 
