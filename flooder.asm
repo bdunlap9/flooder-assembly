@@ -34,21 +34,21 @@ _start:                                                                         
 
         ; Get IP input
         mov eax, 4
-        mov ebx, 1
+        mov ebx, 1                                                              ; File Descriptor (stdout)
         mov ecx, getIPMsg
         mov edx, lenGetIPMsg
         int 80h                                                                 ; Call Kernal
 
         ; Read and Store user input for internet_protocol
         mov eax, 3
-        mov ebx, 1
+        mov ebx, 1                                                              ; File Descriptor (stdout)
         mov ecx, internet_protocol
         mov edx, 16                                                             ; Stores length of string
         int 80h                                                                 ; Call Kernal
 
         ; Get Port Input
         mov eax, 4
-        mov ebx, 1
+        mov ebx, 1                                                              ; File Descriptor (stdout)
         mov ecx, getPortMsg
         mov edx, lenGetPortMsg
         int 80h                                                                 ; Call Kernal
@@ -62,7 +62,7 @@ _start:                                                                         
 
         ; Get Time Input
         mov eax, 4
-        mov ebx, 1                                                              ; Standard Output (print to terminal)
+        mov ebx, 1                                                              ; File Descriptor (stdout)
         mov ecx, getTimeMsg
         mov edx, lenGetTimeMsg
         int 80h                                                                 ; Call Kernal
@@ -78,18 +78,29 @@ _start:                                                                         
 
 
         ; Loop for var time                                                     ; mov BYTE PTR cl, [time]
-        ;mov ecx, time
-        mov BYTE PTR cl, [time]
+        xor ecx, ecx
+        mov eax, 2
+        xor ebx, ebx
 
-        L1:                                                                     ; Body of Loop                                                                                 ; Send Crafted UDP packet till time var ends from loop
-                mov edx, lenGetTest                                             ; Message Length
+        start_loop:
+                cmp eax, ebx
+                jle continue
+                inc ebx
+                jmp start_loop
+
+        continue:
+                add eax, ebx
+                inc ecx
+                cmp ecx, time
+
+                ; Send Test Message x amount of time
+                mov edx, letGetTest                                             ; Message Length
                 mov ecx, getTest                                                ; Message to write
                 mov ebx, 1                                                      ; File Descriptor (stdout)
                 mov eax, 4                                                      ; Call Sys_Write
                 int 80h                                                         ; Call Kernel
-                ;loop L1
-                dec cl
-                jnz L1
+
+                jne start_loop
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
