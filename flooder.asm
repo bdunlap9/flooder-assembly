@@ -70,7 +70,7 @@ _start:                                                                         
         ; Read and Store user input for Time
         mov eax, 3
         mov ebx, 2
-        mov ecx, amount_time
+        mov ecx, time
         mov edx, 25                                                             ; Stores length of string
         int 80h                                                                 ; Call Kernal
 
