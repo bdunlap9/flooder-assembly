@@ -19,7 +19,7 @@ section .data   ; Constant Data
 section .bss
         internet_protocol resb 16
         port resb 6
-        time resb 25
+        amount_time resb 25
 
 section .text
         global _start
@@ -70,7 +70,7 @@ _start:                                                                         
         ; Read and Store user input for Time
         mov eax, 3
         mov ebx, 2
-        mov ecx, time
+        mov ecx, amount_time
         mov edx, 25                                                             ; Stores length of string
         int 80h                                                                 ; Call Kernal
 
@@ -78,7 +78,7 @@ _start:                                                                         
 
 
         ; Loop for var time
-        mov cl, time
+        mov cl, amount_time
         l1:                                                                   ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, lenGetTest                                                  ; Message Length
