@@ -77,8 +77,7 @@ _start:                                                                         
         ; Craft UDP Packet
 
 
-        ; Loop for var time
-        ;mov BYTE PTR cl, [time]
+        ; Loop for var time                                                     ; mov BYTE PTR cl, [time]
         mov ecx, time
         l1:                                                                     ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
@@ -86,6 +85,7 @@ _start:                                                                         
            mov ecx, getTest                                                     ; Message to write
            mov ebx, 1                                                           ; File Descriptor (stdout)
            mov eax, 4                                                           ; Call Sys_Write
+           loop l1
            int 80h                                                              ; Call Kernel
         dec cl
         jnz l1
