@@ -87,7 +87,7 @@ _start:                                                                         
            mov ebx, 1                                                           ; File Descriptor (stdout)
            mov eax, 4                                                           ; Call Sys_Write
            int 80h                                                              ; Call Kernel
-        loop l1
+           loop l1
 
         ; Exit(0)
         mov eax, 1                                                              ; Call Sys_Exit
