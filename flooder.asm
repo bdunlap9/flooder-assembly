@@ -10,8 +10,8 @@ section .data   ; Constant Data
         getTimeMsg db 'Enter Time: '                                           ; Get Time Input
         lenGetTimeMsg equ $-getTimeMsg                                         ; Get Length of Input
 
-        msg db "[Weeke's] -> UDP Flooder v1.0", 0xa                            ; String To Be Printed
-        len equ $-msg                                                        ; Get Length of String
+        getBanner db "[Weeke's] -> UDP Flooder v1.0", 0xa                            ; String To Be Printed
+        lenGetBanner equ $-getBanner                                                        ; Get Length of String
 
         getTest db 'test message for loop', 0xa
         lenGetTest equ $-getTest
@@ -26,7 +26,7 @@ section .text
 
 _start:                                                                         ; User Prompt
         ; Display Banner
-        mov edx, len                                                            ; Message Length
+        mov edx, getBanner                                                      ; Message Length
         mov ecx, msg                                                            ; Message to write
         mov ebx, 1                                                              ; File Descriptor (stdout)
         mov eax, 4                                                              ; Call Sys_Write
@@ -82,7 +82,7 @@ _start:                                                                         
         time:                                                                   ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
            mov edx, len                                                         ; Message Length
-           mov ecx, lenGetTest                                                        ; Message to write
+           mov ecx, getTest                                                     ; Message to write
            mov ebx, 1                                                           ; File Descriptor (stdout)
            mov eax, 4                                                           ; Call Sys_Write
            int 80h                                                              ; Call Kernel
