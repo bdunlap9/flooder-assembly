@@ -26,8 +26,8 @@ section .text
 
 _start:                                                                         ; User Prompt
         ; Display Banner
-        mov edx, getBanner                                                      ; Message Length
-        mov ecx, msg                                                            ; Message to write
+        mov edx, lenGetBanner                                                   ; Message Length
+        mov ecx, getBanner                                                      ; Message to write
         mov ebx, 1                                                              ; File Descriptor (stdout)
         mov eax, 4                                                              ; Call Sys_Write
         int 80h                                                                 ; Call Kernel
