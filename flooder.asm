@@ -10,10 +10,10 @@ section .data   ; Constant Data
         getTimeMsg db 'Enter Time: '                                           ; Get Time Input
         lenGetTimeMsg equ $-getTimeMsg                                         ; Get Length of Input
 
-        getBanner db "[Weeke's] -> UDP Flooder v1.0", 0xa                            ; String To Be Printed
-        lenGetBanner equ $-getBanner                                                        ; Get Length of String
+        getBanner db "[Weeke's] -> UDP Flooder v1.0", 0xa                      ; String To Be Printed
+        lenGetBanner equ $-getBanner                                           ; Get Length of String
 
-        getTest db 'test message for loop', 0xa
+        getTest db 'test message for loop'
         lenGetTest equ $-getTest
 
 section .bss
