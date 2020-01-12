@@ -81,7 +81,7 @@ _start:                                                                         
         mov ecx, time
         time:                                                                   ; Body of Loop
            ; Send Crafted UDP packet till time var ends from loop
-           mov edx, len                                                         ; Message Length
+           mov edx, lenGetTest                                                  ; Message Length
            mov ecx, getTest                                                     ; Message to write
            mov ebx, 1                                                           ; File Descriptor (stdout)
            mov eax, 4                                                           ; Call Sys_Write
